@@ -43,6 +43,17 @@ cc -Wall -Wno-unused-but-set-variable -Wno-unused-variable -static \
   -L"${BSEC_DIR}"/algo/"${ARCH}" -lalgobsec \
   -lm -lrt \
   -o bsec_bme680
+cc -Wall -Wno-unused-but-set-variable -Wno-unused-variable -static \
+  -std=c99 -pedantic \
+  -iquote"${BSEC_DIR}"/algo/${ARCH} \
+  -iquote"${EXAMPLES_DIR}" \
+  "${EXAMPLES_DIR}"/bme680.c \
+  "${EXAMPLES_DIR}"/bsec_integration.c \
+  ./bsec_bme680_json.c \
+  -L"${BSEC_DIR}"/algo/"${ARCH}" -lalgobsec \
+  -lm -lrt \
+  -o bsec_bme680_json
+
 echo 'Compiled.'
 
 cp "${BSEC_DIR}"/config/"${CONFIG}"/bsec_iaq.config "${CONFIG_DIR}"/
