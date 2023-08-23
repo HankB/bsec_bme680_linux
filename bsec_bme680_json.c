@@ -27,7 +27,7 @@
 
 /* definitions */
 
-#define DESTZONE "TZ=Europe/Berlin"
+//#define DESTZONE "TZ=America/Chicago"
 #define temp_offset (5.0f)
 #define sample_rate_mode (BSEC_SAMPLE_RATE_LP)
 
@@ -197,11 +197,11 @@ void output_ready(int64_t timestamp, float iaq, uint8_t iaq_accuracy,
    * CLOCK_REALTIME
    */
   time_t t = time(NULL);
-  struct tm tm = *localtime(&t);
-
-  printf("{\"t\":%ld, ", time(0) );
+  #define   buf_len 256
+  char  buf[buf_len];
+/*
+  printf("{\"t\":%ld, ", t );
   printf("\"IAQ_accuracy\":%d, \"IAQ\":%.2f, ", iaq_accuracy, iaq);
-
   printf("\"temp\": %.2f, \"humid\": %2f, \"press\": %.2f, ", 
         temperature/5.0*9.0+32.0, humidity, pressure / 100);
   printf("\"gas\": %.0f, ", gas);
@@ -209,9 +209,17 @@ void output_ready(int64_t timestamp, float iaq, uint8_t iaq_accuracy,
   printf("\"static IAQ\": %.2f, ", static_iaq);
   printf("\"eCO2 ppm\": %.15f, ", co2_equivalent);
   printf("\"bVOCe ppm\": %.25f", breath_voc_equivalent);
-  //printf(",%" PRId64, timestamp);
-  //printf(",%" PRId64, timestamp_ms);
   printf("}\n");
+  */
+  snprintf(buf, buf_len, "{\"t\":%ld, \"IAQ_accuracy\":%d, \"IAQ\":%.2f, "
+        "\"temp\": %.2f, \"humid\": %2f, \"press\": %.2f, "
+        "\"gas\": %.0f, \"bsec_status\": %d, "
+        "\"static IAQ\": %.2f, \"eCO2 ppm\": %.15f, \"bVOCe ppm\": %.25f}",
+        t, 
+        iaq_accuracy, iaq,
+        temperature/5.0*9.0+32.0, humidity, pressure/100,
+        gas, bsec_status, static_iaq, co2_equivalent, breath_voc_equivalent);
+  printf("%s\n", buf);
   fflush(stdout);
 }
 
@@ -323,7 +331,7 @@ uint32_t config_load(uint8_t *config_buffer, uint32_t n_buffer)
  */
 int main()
 {
-  putenv(DESTZONE); // Switch to destination time zone
+ //putenv(DESTZONE); // Switch to destination time zone
 
   i2cOpen();
   i2cSetAddress(i2c_address);
