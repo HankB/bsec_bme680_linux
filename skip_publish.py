@@ -12,7 +12,7 @@ max=20
 
 for line in sys.stdin:
     if count == 0:
-        cmd = "mosquitto_pub -h mqtt -t HA/zberry/mobile/air_quality -m '"+line+"'"
+        cmd = "mosquitto_pub -h mqtt -t HA/zberry/mobile/air_quality -m '"+line.strip()+"'"
         os.system(cmd)
     count += 1
     if count == max:
