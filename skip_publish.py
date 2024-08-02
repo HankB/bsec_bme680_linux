@@ -9,10 +9,11 @@ import os
 
 count=0
 max=20
+hostname=os.uname()[1]
 
 for line in sys.stdin:
     if count == 0:
-        cmd = "mosquitto_pub -h mqtt -t HA/zberry/mobile/air_quality -m '"+line.strip()+"'"
+        cmd = "mosquitto_pub -h mqtt -t HA/"+hostname+"/mobile/air_quality -m '"+line.strip()+"'"
         os.system(cmd)
     count += 1
     if count == max:

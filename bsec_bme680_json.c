@@ -206,9 +206,9 @@ void output_ready(int64_t timestamp, float iaq, uint8_t iaq_accuracy,
         temperature/5.0*9.0+32.0, humidity, pressure / 100);
   printf("\"gas\": %.0f, ", gas);
   printf("\"bsec_status\": %d, ", bsec_status);
-  printf("\"static IAQ\": %.2f, ", static_iaq);
-  printf("\"eCO2 ppm\": %.15f, ", co2_equivalent);
-  printf("\"bVOCe ppm\": %.25f", breath_voc_equivalent);
+  printf("\"static_IAQ\": %.2f, ", static_iaq);
+  printf("\"eCO2_ppm\": %.15f, ", co2_equivalent);
+  printf("\"bVOCe_ppm\": %.25f", breath_voc_equivalent);
   printf("}\n");
   */
   snprintf(buf, buf_len, "{\"t\":%ld, \"IAQ_accuracy\":%d, \"IAQ\":%.2f, "
