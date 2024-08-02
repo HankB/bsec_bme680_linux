@@ -214,7 +214,8 @@ void output_ready(int64_t timestamp, float iaq, uint8_t iaq_accuracy,
   snprintf(buf, buf_len, "{\"t\":%ld, \"IAQ_accuracy\":%d, \"IAQ\":%.2f, "
         "\"temp\": %.2f, \"humid\": %2f, \"press\": %.2f, "
         "\"gas\": %.0f, \"bsec_status\": %d, "
-        "\"static IAQ\": %.2f, \"eCO2 ppm\": %.15f, \"bVOCe ppm\": %.25f}",
+        "\"static IAQ\": %.2f, \"eCO2 ppm\": %.15f, \"bVOCe ppm\": %.25f, "
+        "\"device\":\"BME680\"}",
         t, 
         iaq_accuracy, iaq,
         temperature/5.0*9.0+32.0, humidity, pressure/100,
