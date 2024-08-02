@@ -18,8 +18,11 @@ Readings will be directly output to stdout in a loop.
 
 ## Prerequisites
 
-[Download the BSEC software package from Bosch](https://www.bosch-sensortec.com/bst/products/all_products/bsec)
+[Download the BSEC software package from Bosch](https://www.bosch-sensortec.com/software-tools/software/bme680-software-bsec/)
 and put it into `./src`, then unpack.
+
+* Install `i2c-tools` 
+* Enable i2c using `raspi-config`
 
 ## Configure and Compile
 
@@ -100,3 +103,6 @@ d063e2af886656d51aa6787ae9975d932e297448e531a1692e93371a6e575042  BSEC_1.4.7.4_G
 c56d537538c07db4a778a332ef65f203e4eac2113953f7a104e838d9f6af31e5  bsec_1-4-8-0_generic_release.zip
 ```
 
+## local modifications
+
+`bsec_bme680_json` was created to provide the output in a format more suitable for use with Home Assistant. (<https://www.home-assistant.io/>)
